@@ -1,15 +1,18 @@
 [build-system]
 requires = [
-"setuptools>=61.0", 
-"requests>=2.31.0",
-"pillow>=10.3.0"
+"setuptools>=61.0"
 ]
+
 build-backend = "setuptools.build_meta"
 [project.scripts]
 pyflagoras = "pyflagoras:__main__.main"
 [project]
 name = "pyflagoras"
 version = "0.0.1"
+dependencies = [
+"requests>=2.31.0",
+"pillow>=10.3.0"
+]
 authors = [
   { name="Annabel Quach", email="annabelquach13@gmail.com" },
 ]
