@@ -21,7 +21,7 @@ class Pyflagoras:
                 
         with open(f"{Path(self.image).stem}_{self.flag}.svg", "w", encoding="utf-8") as file:
             file.write(rep)
-        print(f"🏳️‍🌈 Generated {flag_attributes["name"]} ({self.flag}) flag from {Path(self.image).name} as {Path(self.image).stem}_{self.flag}.svg!")
+        print(f"🏳️‍🌈 Generated {flag_attributes['name']} ({self.flag}) flag from {Path(self.image).name} as {Path(self.image).stem}_{self.flag}.svg!")
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
