@@ -1,1 +1,1 @@
-from pyflagoras.pyflagoras import Pyflagoras
+from .pyflagoras import Pyflagoras

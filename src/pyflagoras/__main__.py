@@ -1,4 +1,4 @@
-from pyflagoras.pyflagoras import Pyflagoras
+from .pyflagoras import Pyflagoras
 
 import argparse
 parser = argparse.ArgumentParser(
@@ -17,6 +17,8 @@ parser.add_argument(
     default='progressPride_2018',
     type=str
 ) 
+
+parser.add_argument
 
 def main() -> None:
     args = parser.parse_args()

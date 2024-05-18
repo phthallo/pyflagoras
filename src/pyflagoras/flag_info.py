@@ -1,12 +1,13 @@
 import json
 import os 
+from importlib.resources import files
 
 def flag_attr(flag_name: str) -> str:
-    if not (os.path.exists("src/pyflagoras/flags/"+flag_name+".json")):
-        raise Exception(f"File {flag_name}.json was not found.")
-    with open("src/pyflagoras/flags/"+flag_name+".json", "r", encoding="utf-8") as json_file:
-        data = json.load(json_file)
-        return data
+    if not (os.path.exists(os.path.join(os.path.dirname(__file__), "flags", flag_name+".json"))):
+        raise Exception(f"{flag_name} is an invalid flag name.")
+    location = files("pyflagoras.flags").joinpath(flag_name+".json").read_text(encoding="utf-8")
+    data = json.loads(location)
+    return data
 
 def format_rgb(flag_colours: list[dict]) -> list[tuple]:
     """

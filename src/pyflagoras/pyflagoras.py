@@ -4,6 +4,7 @@ from .image_processor import extract_colours
 from .flag_info import flag_attr, format_rgb
 from .utils import rgb_hex
 from .similarity_algorithms import _low_cost, _pythagoras
+from pathlib import Path
 
 class Pyflagoras:
     def __init__(self, image, flag):
@@ -18,8 +19,9 @@ class Pyflagoras:
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
         rep = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
                 
-        with open(f"{self.image[:-4]}.svg", "w", encoding="utf-8") as file:
+        with open(f"{Path(self.image).stem}_{self.flag}.svg", "w", encoding="utf-8") as file:
             file.write(rep)
+        print(f"🏳️‍🌈 Generated {flag_attributes["name"]} ({self.flag}) flag from {Path(self.image).name} as {Path(self.image).stem}_{self.flag}.svg!")
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
