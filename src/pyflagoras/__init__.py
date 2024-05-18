@@ -1,0 +1,1 @@
+from pyflagoras.pyflagoras import Pyflagoras
