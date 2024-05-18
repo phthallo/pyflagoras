@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 pyflagoras = "pyflagoras:__main__.main"
 [project]
 name = "pyflagoras"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
 "requests>=2.31.0",
 "pillow>=10.3.0"
