@@ -7,10 +7,10 @@ from .similarity_algorithms import _low_cost, _pythagoras
 from pathlib import Path
 
 class Pyflagoras:
-    def __init__(self, image, flag, output):
+    def __init__(self, image, flag, name):
         self.image = image
         self.flag = flag
-        self.output = output
+        self.name = name
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
@@ -68,16 +68,15 @@ class Pyflagoras:
         generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
-        self.output = ((self.output)
+        self.name = ((self.name)
         .replace("{n}", Path(self.image).stem)
         .replace("{N}", Path(self.image).name)
         .replace("{f}", flag_attributes['name'])
         .replace("{F}", flag_attributes['id'])
         .replace('"', "")
         )
-        print(self.output)
-        with open(f"{self.output}.svg", "w", encoding="utf-8") as file:
+        with open(f"{self.name}.svg", "w", encoding="utf-8") as file:
             file.write(substituted)
-        print(f"🏳️‍🌈 Generated {flag_attributes['name']} ({self.flag}) flag from {Path(self.image).name} as {self.output}.svg!")
+        print(f"🏳️‍🌈 Generated {flag_attributes['name']} ({self.flag}) flag from {Path(self.image).name} as {self.name}.svg!")
 
 
