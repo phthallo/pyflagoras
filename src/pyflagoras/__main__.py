@@ -57,7 +57,7 @@ def main() -> None:
     pyflag = Pyflagoras(
         image=args.image,
         flag=args.flag,
-        output=args.output
+        name=args.name
     )
     pyflag.run()
 
