@@ -1,10 +1,12 @@
 import math
 import re
+import logging
 from .image_processor import extract_colours
 from .flag_info import flag_attr, format_rgb
 from .utils import rgb_hex
 from .similarity_algorithms import _low_cost, _pythagoras
 from pathlib import Path
+
 
 class Pyflagoras:
     def __init__(self, image, flag, name):
@@ -21,17 +23,20 @@ class Pyflagoras:
         image_colours (list[tuple]): The colours obtained from the image, formatted as a list of tuples in the format (r, g, b) -> the list returned by image_processor's extract_colours()
         """
         all_pairings = []
-        for flag_colour in flag_colours:
+        for flag_colour in set(flag_colours):
+            logging.info(f"Generating pairings for {flag_colour}")
             flag_colour_pairings = []
             for image_colour in image_colours:
                 pair = _low_cost(flag_colour, image_colour)
                 flag_colour_pairings.append(pair)
+            logging.info(f"{len(flag_colour_pairings)} pairings generated for {flag_colour}")
             all_pairings.append(flag_colour_pairings)
+
         return all_pairings
 
     def assign_rgb(rgb_similarity: list[list[tuple[tuple]]]) -> dict:
         """
-        Assigns each value in rgb1 the closest colour to it out of rgb2 based on the results of the calc_colour_distance
+        Assigns each value in rgb1 the closest colour to it out of rgb2 based on the results of the parse_similarity
 
         Slightly cursed things going on in the type hints, sorry! If it makes more sense: 
         A list of:
@@ -46,6 +51,7 @@ class Pyflagoras:
                 if colour_pairing[2] < curr_min:
                     curr_min = colour_pairing[2]
                     curr_pair = colour_pairing[1]
+            logging.info(f"Found pair with low difference {rgb_hex(colour_pairing[0]), rgb_hex(curr_pair)} difference of {curr_min}")
             optimum_pairs[(rgb_hex(colour_pairing[0]))] = rgb_hex(curr_pair)
         return optimum_pairs
 
@@ -59,6 +65,7 @@ class Pyflagoras:
         """
         for flag_colour in optimum_pairs.keys():
             flag_svg = re.sub(flag_colour, optimum_pairs[flag_colour], flag_svg, flags=re.IGNORECASE) # There's inconsistency in the source json files as to whether the hex codes are in uppercase or lowercase.
+            logging.info(f"Replacing {flag_colour} with {optimum_pairs[flag_colour]} in final .svg")
         return flag_svg
     
     def run(self):
@@ -77,6 +84,6 @@ class Pyflagoras:
         )
         with open(f"{self.name}.svg", "w", encoding="utf-8") as file:
             file.write(substituted)
-        print(f"🏳️‍🌈 Generated {flag_attributes['name']} ({self.flag}) flag from {Path(self.image).name} as {self.name}.svg!")
+        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({self.flag}) flag from {Path(self.image).name} as {self.name}.svg!")
 
 

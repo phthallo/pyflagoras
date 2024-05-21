@@ -1,5 +1,6 @@
 import json
 import os 
+import logging
 from importlib.resources import files
 
 def flag_attr(flag_name: str) -> str:
@@ -7,6 +8,7 @@ def flag_attr(flag_name: str) -> str:
         raise Exception(f"{flag_name} is an invalid flag name.")
     location = files("pyflagoras.flags").joinpath(flag_name+".json").read_text(encoding="utf-8")
     data = json.loads(location)
+    logging.info(f"Loading attributes of flag '{flag_name}'")
     return data
 
 def format_rgb(flag_colours: list[dict]) -> list[tuple]:

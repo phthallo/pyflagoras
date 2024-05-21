@@ -1,6 +1,7 @@
 from .pyflagoras import Pyflagoras 
 from pyflagoras import __version__ 
 import argparse
+import logging
 
 parser = argparse.ArgumentParser(
                     prog='pyflagoras',
@@ -49,7 +50,12 @@ Default:
     '''
 )
 
-parser.add_argument('-v', '--version', action='version',
+parser.add_argument('--verbose', 
+                    action="store_const",
+                    help="Enable verbosity (for general info and debugging)",
+                    const=logging.INFO)
+
+parser.add_argument('--version', action='version',
                     version=__version__, help="show the program's version number and exit")
 
 def main() -> None:
@@ -57,8 +63,10 @@ def main() -> None:
     pyflag = Pyflagoras(
         image=args.image,
         flag=args.flag,
-        name=args.name
+        name=args.name,
     )
+    logging.basicConfig(level=args.verbose, format="🏳️‍🌈%(funcName)17s() %(message)s")
+
     pyflag.run()
 
 if __name__ == "__main__":
