@@ -1,5 +1,5 @@
 from .pyflagoras import Pyflagoras 
-from pyflagoras import __version__ 
+from pyflagoras import __version__, __list__
 import argparse
 import logging
 
@@ -28,7 +28,7 @@ Examples:
     intersexInclusive_2021
     nonbinary_2014
 Default:
-    progressPride_2018\nSee https://github.com/phthallo/pyflagoras/blob/main/dev/flag_list.txt for a complete list of flag IDs.''',
+    progressPride_2018''',
     type=str
 ) 
 
@@ -57,6 +57,12 @@ parser.add_argument('--verbose',
 
 parser.add_argument('--version', action='version',
                     version=__version__, help="show the program's version number and exit")
+
+parser.add_argument('-l',
+                    '--list',
+                    action='version',
+                    version=__list__,
+                    help='show all flag ids and exit')
 
 def main() -> None:
     args = parser.parse_args()

@@ -5,7 +5,7 @@ from importlib.resources import files
 
 def flag_attr(flag_name: str) -> str:
     if not (os.path.exists(os.path.join(os.path.dirname(__file__), "flags", flag_name+".json"))):
-        raise Exception(f"{flag_name} is an invalid flag name.")
+        raise Exception(f"The flag '{flag_name}' does not exist.")
     location = files("pyflagoras.flags").joinpath(flag_name+".json").read_text(encoding="utf-8")
     data = json.loads(location)
     logging.info(f"Loading attributes of flag '{flag_name}'")

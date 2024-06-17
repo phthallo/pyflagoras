@@ -69,7 +69,7 @@ Substitute `py` for `python3` as necessary.
 ## Adding other flags 
 The current pride flags are sourced from @/JoeHart's [Pride Flag API](https://github.com/JoeHart/pride-flag-api). 
 
-To add a new flag, open a pull request with the file name `<flag_name>_<year_of_release>.json`. Make sure this `.json` file follows the format of the other flags under `/src/pyflagoras/flags`
+To add a new flag, open a pull request with the file name `<flag_name>_<year_of_release>.json`. Make sure this `.json` file follows the format of the other flags under `/src/pyflagoras/flags`. At the very least, the file must contain the flag's name, its ID, and the flag in `.svg` format.  
 
 ## Notes
 - The name `pyflagoras` comes from **py**thon, pride **flag**, and the basic colour similarity algorithm being a 3D application of Pythagoras' theorem. 
