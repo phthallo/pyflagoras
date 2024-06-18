@@ -3,7 +3,7 @@ import re
 import logging
 from .image_processor import extract_colours
 from .flag_info import flag_attr, format_rgb
-from .utils import rgb_hex
+from .utils import rgb_hex, hex_rgb
 from .similarity_algorithms import _low_cost, _pythagoras
 from pathlib import Path
 
@@ -65,13 +65,15 @@ class Pyflagoras:
         """
         for flag_colour in optimum_pairs.keys():
             flag_svg = re.sub(flag_colour, optimum_pairs[flag_colour], flag_svg, flags=re.IGNORECASE) # There's inconsistency in the source json files as to whether the hex codes are in uppercase or lowercase.
-            logging.info(f"Replacing {flag_colour} with {optimum_pairs[flag_colour]} in final .svg")
+            logging.info(f"Replacing {flag_colour} ({hex_rgb(flag_colour)}) with {optimum_pairs[flag_colour]} ({hex_rgb(optimum_pairs[flag_colour])}) in final .svg file")
         return flag_svg
     
     def run(self):
         image_colours = extract_colours(self.image)
         flag_attributes = flag_attr(self.flag)
-        format_r = format_rgb(flag_attributes["colors"])
+        svg_colours = re.findall(r"#(?:[0-9a-fA-F]{3}){1,2}", flag_attributes["svg"]) # This should return a list of hex codes found in the svg data
+        logging.info(f"regex Finding all hex codes in SVG... {len(svg_colours)} found: {svg_colours}")
+        format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
         generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)

@@ -12,7 +12,7 @@ pip install pyflagoras
 ## Usage
 ```
 $ pyflagoras --help
-usage: pyflagoras [-h] [-f FLAG] [-n NAME] [-v] image
+usage: pyflagoras [-h] [-f FLAG] [-n NAME] [--verbose] [--version] [-l] image
 
 A command line interface tool to generate pride flags from images.
 
@@ -30,7 +30,6 @@ options:
                             nonbinary_2014
                         Default:
                             progressPride_2018
-                        See https://github.com/phthallo/pyflagoras/blob/main/dev/flag_list.txt for a complete list of flag IDs.
   -n NAME, --name NAME  Customise the name of the final .svg. The following can be used as part of the file name:
                         Format placeholders:
                             {n}: File name (e.g celeste_classic)
@@ -42,7 +41,9 @@ options:
                         Default:
                             {n}_{F} [renders celeste_classic_progressPride_2018.svg]
 
-  -v, --version         show the program's version number and exit
+  --verbose             Enable verbosity (for general info and debugging)
+  --version             show the program's version number and exit
+  -l, --list            show all flag ids and exit
 
 Documentation, issues and more: https://github.com/phthallo/pyflagoras
 ```
