@@ -4,6 +4,7 @@ import logging
 from importlib.resources import files
 
 def flag_attr(flag_alias: str) -> str:
+    flag_alias = flag_alias.lower()
     all_flags = json.loads(files("pyflagoras").joinpath("flag_aliases.json").read_text(encoding="utf-8"))
     if flag_alias not in all_flags:
         raise Exception(f"The alias '{flag_alias}' is not associated with a flag.")
