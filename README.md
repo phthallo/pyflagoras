@@ -1,7 +1,10 @@
 # pyflagoras
 🏳️‍🌈 A Python command line interface tool to generate pride flags from images.
 
-https://github.com/phthallo/pyflagoras/assets/84078890/5440a9d3-2c49-4200-a52a-f4896956ece0
+
+https://github.com/phthallo/pyflagoras/assets/84078890/0d26fe83-374d-45ce-bb8d-ba5be970bd4a
+
+
 
 ## Installation 
 You can install this package from [pypi.org](https://pypi.org)! Open a terminal and run the following:
