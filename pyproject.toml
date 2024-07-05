@@ -10,7 +10,9 @@ pyflagoras = "pyflagoras:__main__.main"
 name = "pyflagoras"
 version = "0.3.0"
 dependencies = [
-"pillow>=10.3.0"
+"pillow>=10.3.0",
+"pymupdf>=1.24.7",
+"svglib>=1.5.1"
 ]
 authors = [
   { name="Annabel Quach", email="annabelquach13@gmail.com" },

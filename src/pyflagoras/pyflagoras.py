@@ -1,11 +1,18 @@
 import numpy as np
 import re
 import logging
+import os
+
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPDF
+from pathlib import Path
+import fitz
+
+
 from .image_processor import extract_colours
 from .flag_info import flag_attr, format_rgb
 from .utils import rgb_hex, hex_rgb
 from .similarity_algorithms import _low_cost, _pythagoras
-from pathlib import Path
 
 
 class Pyflagoras:
@@ -89,6 +96,13 @@ class Pyflagoras:
         )
         with open(f"{self.name}.svg", "w", encoding="utf-8") as file:
             file.write(substituted)
-        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes["id"]}) flag from {Path(self.image).name} as {self.name}.svg!")
+
+        drawing = svg2rlg(f"{self.name}.svg")
+        renderPDF.drawToFile(drawing, f"{self.name}.pdf")
+        png = (fitz.open(f"{self.name}.pdf")[0]).get_pixmap()
+        png.save(f"{self.name}.png")
+        os.remove(f"{self.name}.pdf")
+
+        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes["id"]}) flag from {Path(self.image).name} as {self.name}.png!")
 
 
