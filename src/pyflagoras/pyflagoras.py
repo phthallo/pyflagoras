@@ -103,6 +103,6 @@ class Pyflagoras:
         png.save(f"{self.name}.png")
         os.remove(f"{self.name}.pdf")
 
-        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes["id"]}) flag from {Path(self.image).name} as {self.name}.png!")
+        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes['id']}) flag from {Path(self.image).name} as {self.name}.png!")
 
 
