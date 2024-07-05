@@ -3,9 +3,12 @@ import os
 import logging
 from importlib.resources import files
 
-def flag_attr(flag_name: str) -> str:
-    if not (os.path.exists(os.path.join(os.path.dirname(__file__), "flags", flag_name+".json"))):
-        raise Exception(f"The flag '{flag_name}' does not exist.")
+def flag_attr(flag_alias: str) -> str:
+    all_flags = json.loads(files("pyflagoras").joinpath("flag_aliases.json").read_text(encoding="utf-8"))
+    if flag_alias not in all_flags:
+        raise Exception(f"The alias '{flag_alias}' is not associated with a flag.")
+    else:
+        flag_name = all_flags[flag_alias]
     location = files("pyflagoras.flags").joinpath(flag_name+".json").read_text(encoding="utf-8")
     data = json.loads(location)
     logging.info(f"Loading attributes of flag '{flag_name}'")

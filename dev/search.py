@@ -4,6 +4,7 @@ Fetch the latest pride flags from the pride.dev repository
 
 import requests
 import re
+import json
 
 def index_flags():
     """Fetches the latest index of pride flags from the pride.dev repository"""
@@ -17,14 +18,20 @@ def index_flags():
 
 def save_flag(flag):
     """Takes a flag and writes its API data to `flag_name`.json under src/flags"""
-    API_ENDPOINT = "https://pride.dev/api/flags/"
-    API_ENDPOINT="localhost:3000/api/flags/"
+    API_ENDPOINT="http://localhost:3000/api/flags/"
     response = requests.get(API_ENDPOINT + flag)
     if response.status_code == 200:
-        with open("src/flags/"+flag+".json", "w", encoding="utf-8") as file:
-            file.write(response.text)
-            print("saving")
+        with open("src/pyflagoras/flags/"+flag+".json", "w", encoding="utf-8") as file:
+            flagJson = json.loads(response.text)
+            flagData = {"name": flagJson["name"],
+                        "alias": flagJson["id"],
+                        "id": flagJson["id"],
+                        "svg":flagJson["svg"]}
+            json.dump(flagData, file)
+            print(f"Saving {flag} data.")
             return 0
     return 1
 
-save_flag("intersexInclusive_2021")
+with open("dev/flag_list.txt", "r") as file:
+    for flag in file:
+        save_flag(flag.strip())

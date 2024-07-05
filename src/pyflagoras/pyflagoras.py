@@ -72,7 +72,7 @@ class Pyflagoras:
         image_colours = extract_colours(self.image)
         flag_attributes = flag_attr(self.flag)
         svg_colours = re.findall(r"#(?:[0-9a-fA-F]{3}){1,2}", flag_attributes["svg"]) # This should return a list of hex codes found in the svg data
-        logging.info(f"regex Finding all hex codes in SVG... {len(svg_colours)} found: {svg_colours}")
+        logging.info(f"Finding all hex codes in SVG... {len(svg_colours)} found: {svg_colours}")
         format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
         generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
