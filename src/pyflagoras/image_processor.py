@@ -13,6 +13,8 @@ def extract_colours(img: str) -> list[tuple]:
         raise Exception(f"The image '{img}' does not exist.")
     image = np.array(Image.open(img).convert("RGB", palette="IMAGE.ADAPTIVE"))
     palette = Image.open(img).convert("RGB", palette="IMAGE.ADAPTIVE")
-    colours = palette.getcolors(maxcolors=1000000) # IMPORTANT: Figure out a feasible amount of colours based on the image size?
+    max_colours = palette.size[0]*palette.size[1]
+    logging.info(f"Maximum colours in {img} is {max_colours}")
+    colours = palette.getcolors(maxcolors=max_colours) # IMPORTANT: Figure out a feasible amount of colours based on the image size?
     return ([i[1] for i in colours],image)
 

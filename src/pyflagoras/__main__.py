@@ -5,7 +5,7 @@ import logging
 
 parser = argparse.ArgumentParser(
                     prog='pyflagoras',
-                    description='A command line interface tool to generate pride flags from images.',
+                    description='A command line interface tool for generating pride flags from images.',
                     epilog="Documentation, issues and more: https://github.com/phthallo/pyflagoras",
                     formatter_class=argparse.RawTextHelpFormatter)
 
@@ -21,14 +21,14 @@ Examples:
 parser.add_argument(
     '-f', 
     '--flag',
-    default="progressPride_2018",
+    default="progresspride",
     help=
-    '''The ID (<flag_name>_<year_of_release>) of the flag to generate.
+    '''The alias of the flag to generate.
 Examples:
-    intersexInclusive_2021
-    nonbinary_2014
+    intersexinclusive
+    nonbinary
 Default:
-    progressPride_2018''',
+    progresspride''',
     type=str
 ) 
 
@@ -66,7 +66,7 @@ parser.add_argument('-l',
                     '--list',
                     action='version',
                     version=__list__,
-                    help='show all flag ids and exit')
+                    help='show all flag aliases and exit')
 
 def main() -> None:
     args = parser.parse_args()

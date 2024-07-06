@@ -12,10 +12,12 @@ To add a flag, you will need a `.svg` file of the flag's design. You can see som
 2. Navigate to `src/pyflagoras/flags`
 3. Create a new file called `<id>.json`
 4. Fill the following `.json` out and paste it in the file, replacing the values as necessary.
-    ```{
+    ```
+    {
         "name": "<name>", 
         "id": "<id>", 
-        "svg": "<yoursvgfile>"}
+        "svg": "<yoursvgfile>"
+    }
     ```
-5. Navigate to `src/pyflagoras/flag_aliases.json` and add your flag alias and flag ID as a key-value pair. Please ensure that it fits alphabetically, and that the flag alias is in all-lowercase.
+5. Navigate to `src/pyflagoras/flag_aliases.json` and add your flag alias and flag ID as a key-value pair. Please ensure that it fits alphabetically (just for stylistic purposes), and that the flag alias is in all-lowercase.
 7. You're done! Open a new pull request to get your flag added.
