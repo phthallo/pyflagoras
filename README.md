@@ -1,7 +1,9 @@
 # pyflagoras
 🏳️‍🌈 A Python command line interface tool for generating pride flags from images. The program accepts any image file and outputs the flag as a `.png` file.
 
-https://github.com/phthallo/pyflagoras/assets/84078890/0d26fe83-374d-45ce-bb8d-ba5be970bd4a
+https://github.com/phthallo/pyflagoras/assets/84078890/8927779e-5e1c-411e-9d14-6bf1bdb8396d
+
+(To see more examples of flags generated using this program, visit [examples.md](/examples.md)!)
 
 ## How does it work?
 Pyflagoras, at a minimum, needs the name of a pride flag and a path to an image to work.
@@ -80,7 +82,8 @@ Substitute `py` for `python3` as necessary.
 ## Contributions 
 The current pride flags have been sourced from @/JoeHart's [Pride Flag API](https://github.com/JoeHart/pride-flag-api). 
 
-To add a new flag, see [addingflags.md](/addingflags.md). 
+To add a new flag, see [addingflags.md](/addingflags.md).
+
 
 ## Notes
 - The name `pyflagoras` comes from **py**thon, pride **flag**, and the basic colour similarity algorithm being a 3D application of Pythagoras' theorem. 
