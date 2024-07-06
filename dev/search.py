@@ -24,10 +24,9 @@ def save_flag(flag):
         with open("src/pyflagoras/flags/"+flag+".json", "w", encoding="utf-8") as file:
             flagJson = json.loads(response.text)
             flagData = {"name": flagJson["name"],
-                        "alias": flagJson["id"],
                         "id": flagJson["id"],
                         "svg":flagJson["svg"]}
-            json.dump(flagData, file)
+            json.dump(flagData, file, indent=4)
             print(f"Saving {flag} data.")
             return 0
     return 1

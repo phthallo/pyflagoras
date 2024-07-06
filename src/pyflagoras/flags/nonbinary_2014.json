@@ -1,1 +1,5 @@
-{"name": "Nonbinary", "alias": "nonbinary_2014", "id": "nonbinary_2014", "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 240\"><g fill-rule=\"evenodd\"><path d=\"M0 150v30h400v-60H0v30\" fill=\"#9c5cd4\"></path><path d=\"M0 90v30h400V60H0v30\" fill=\"#fff\"></path><path d=\"M0 30v30h400V0H0v30\" fill=\"#fcf434\"></path><path d=\"M0 210v30h400v-60H0v30\" fill=\"#2c2c2c\"></path></g></svg>"}
+{
+    "name": "Nonbinary",
+    "id": "nonbinary_2014",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 240\"><g fill-rule=\"evenodd\"><path d=\"M0 150v30h400v-60H0v30\" fill=\"#9c5cd4\"></path><path d=\"M0 90v30h400V60H0v30\" fill=\"#fff\"></path><path d=\"M0 30v30h400V0H0v30\" fill=\"#fcf434\"></path><path d=\"M0 210v30h400v-60H0v30\" fill=\"#2c2c2c\"></path></g></svg>"
+}

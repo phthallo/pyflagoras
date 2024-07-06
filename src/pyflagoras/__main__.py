@@ -37,16 +37,16 @@ parser.add_argument(
     '--name',
     default="{n}_{F}",
     help=
-    '''Customise the name of the final .svg. The following can be used as part of the file name: 
+    '''Customise the name of the final .png. The following can be used as part of the file name: 
 Format placeholders:
     {n}: File name (e.g celeste_classic)
     {N}: File name (full) (e.g celeste_classic.png) 
     {f}: Flag name (e.g Progress Pride)
     {F}: Flag ID (e.g progressPride_2018)
 Examples:
-    pyflagoras celeste_classic.png -n "{f}_{n}" [renders Progress Pride_celeste_classic.svg]
+    pyflagoras celeste_classic.png -n "{f}_{n}" [renders Progress Pride_celeste_classic.png]
 Default:
-    {n}_{F} [renders celeste_classic_progressPride_2018.svg]
+    {n}_{F} [renders celeste_classic_progressPride_2018.png]
     '''
 )
 

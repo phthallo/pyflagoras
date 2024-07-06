@@ -1,1 +1,5 @@
-{"name": "Intersex", "alias": "intersex_2013", "id": "intersex_2013", "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#FFD800\" d=\"M0 0h900v600H0z\"></path><circle cx=\"450\" cy=\"300\" r=\"147\" fill=\"none\" stroke-width=\"50\" stroke=\"#7902aa\"></circle></svg>"}
+{
+    "name": "Intersex",
+    "id": "intersex_2013",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#FFD800\" d=\"M0 0h900v600H0z\"></path><circle cx=\"450\" cy=\"300\" r=\"147\" fill=\"none\" stroke-width=\"50\" stroke=\"#7902aa\"></circle></svg>"
+}

@@ -1,5 +1,5 @@
 # pyflagoras
-🏳️‍🌈 A Python command line interface tool to generate pride flags from images.
+🏳️‍🌈 A Python command line interface tool for generating pride flags from images. The program accepts image files and outputs the flag as PNG files.
 
 https://github.com/phthallo/pyflagoras/assets/84078890/5440a9d3-2c49-4200-a52a-f4896956ece0
 
@@ -14,7 +14,7 @@ pip install pyflagoras
 $ pyflagoras --help
 usage: pyflagoras [-h] [-f FLAG] [-n NAME] [--verbose] [--version] [-l] image
 
-A command line interface tool to generate pride flags from images.
+A command line interface tool for generating pride flags from images.
 
 positional arguments:
   image                 Path to the image to generate a flag from.
@@ -30,16 +30,16 @@ options:
                             nonbinary_2014
                         Default:
                             progressPride_2018
-  -n NAME, --name NAME  Customise the name of the final .svg. The following can be used as part of the file name:
+  -n NAME, --name NAME  Customise the name of the final .png. The following can be used as part of the file name:
                         Format placeholders:
                             {n}: File name (e.g celeste_classic)
                             {N}: File name (full) (e.g celeste_classic.png)
                             {f}: Flag name (e.g Progress Pride)
                             {F}: Flag ID (e.g progressPride_2018)
                         Examples:
-                            pyflagoras celeste_classic.png -n "{f}_{n}" [renders Progress Pride_celeste_classic.svg]
+                            pyflagoras celeste_classic.png -n "{f}_{n}" [renders Progress Pride_celeste_classic.png]
                         Default:
-                            {n}_{F} [renders celeste_classic_progressPride_2018.svg]
+                            {n}_{F} [renders celeste_classic_progressPride_2018.png]
 
   --verbose             Enable verbosity (for general info and debugging)
   --version             show the program's version number and exit
@@ -67,10 +67,10 @@ Substitute `py` for `python3` as necessary.
     py -m pip install dist/pyflagoras-x.x.x-py3-none-any.whl
     ```
 
-## Adding other flags 
+## Contributions 
 The current pride flags are sourced from @/JoeHart's [Pride Flag API](https://github.com/JoeHart/pride-flag-api). 
 
-To add a new flag, open a pull request with the file name `<flag_name>_<year_of_release>.json`. Make sure this `.json` file follows the format of the other flags under `/src/pyflagoras/flags`. At the very least, the file must contain the flag's name, its ID, and the flag in `.svg` format.  
+To add a new flag, see [addingflags.md](/addingflags.md)
 
 ## Notes
 - The name `pyflagoras` comes from **py**thon, pride **flag**, and the basic colour similarity algorithm being a 3D application of Pythagoras' theorem. 

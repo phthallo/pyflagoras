@@ -1,1 +1,5 @@
-{"name": "Polysexual", "alias": "polysexual_2012", "id": "polysexual_2012", "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 480\"><path fill=\"#1c92f6\" d=\"M0 0h800v480H0z\"></path><path fill=\"#07d569\" d=\"M0 0h800v320H0z\"></path><path fill=\"#f61cb9\" d=\"M0 0h800v160H0z\"></path></svg>"}
+{
+    "name": "Polysexual",
+    "id": "polysexual_2012",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 480\"><path fill=\"#1c92f6\" d=\"M0 0h800v480H0z\"></path><path fill=\"#07d569\" d=\"M0 0h800v320H0z\"></path><path fill=\"#f61cb9\" d=\"M0 0h800v160H0z\"></path></svg>"
+}

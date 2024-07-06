@@ -1,1 +1,5 @@
-{"name": "Pangender", "alias": "pangender_2015", "id": "pangender_2015", "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 35 21\"><rect fill=\"#fff798\" width=\"35\" height=\"21\"></rect><rect fill=\"#feddcc\" width=\"35\" height=\"15\" y=\"3\"></rect><rect fill=\"#ffebfc\" width=\"35\" height=\"9\" y=\"6\"></rect><rect fill=\"#fff\" width=\"35\" height=\"3\" y=\"9\"></rect></svg>"}
+{
+    "name": "Pangender",
+    "id": "pangender_2015",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 35 21\"><rect fill=\"#fff798\" width=\"35\" height=\"21\"></rect><rect fill=\"#feddcc\" width=\"35\" height=\"15\" y=\"3\"></rect><rect fill=\"#ffebfc\" width=\"35\" height=\"9\" y=\"6\"></rect><rect fill=\"#fff\" width=\"35\" height=\"3\" y=\"9\"></rect></svg>"
+}
