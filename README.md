@@ -60,6 +60,8 @@ options:
 Documentation, issues and more: https://github.com/phthallo/pyflagoras
 ```
 
+Tip: Using `--verbose` will log the coordinates of where the colours were found on your image!
+
 ## Development
 Substitute `py` for `python3` as necessary.
 1. Clone the repository.
