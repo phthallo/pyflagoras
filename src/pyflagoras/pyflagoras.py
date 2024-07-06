@@ -16,11 +16,12 @@ from .similarity_algorithms import _low_cost, _pythagoras
 
 
 class Pyflagoras:
-    def __init__(self, image, flag, name, svg):
+    def __init__(self, image, flag, name, svg, verbose):
         self.image = image
         self.flag = flag
         self.name = name
         self.svg = svg
+        self.verbose = verbose
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
@@ -76,17 +77,22 @@ class Pyflagoras:
         return flag_svg
     
     def run(self):
-        image_colours = extract_colours(self.image)[0]
+        image_colours = extract_colours(self.image, self.verbose)
         flag_attributes = flag_attr(self.flag)
         svg_colours = re.findall(r"#(?:[0-9a-fA-F]{3}){1,2}", flag_attributes["svg"]) # This should return a list of hex codes found in the svg data
         logging.info(f"Finding all hex codes in SVG... {len(svg_colours)} found: {svg_colours}")
         format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
-        generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
+        if self.verbose:
+            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours[0])
+        else:
+            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
-        for colour in assign_similar_colours:
-            col = (hex_rgb(assign_similar_colours[colour]))
-            colour_coords_y, colour_coords_x = np.where(np.all(extract_colours(self.image)[1]==col,axis=2))
-            logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at ({colour_coords_x[0]}, {colour_coords_y[0]}) on {self.image}. ")
+        if self.verbose:
+            for colour in assign_similar_colours:
+                col = (hex_rgb(assign_similar_colours[colour]))
+                colour_coords_y, colour_coords_x = np.where(np.all(image_colours[1]==col,axis=2))
+                logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at ({colour_coords_x[0]}, {colour_coords_y[0]}) on {self.image}. ")
+        
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
         self.name = ((self.name)
         .replace("{n}", Path(self.image).stem)

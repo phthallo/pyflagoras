@@ -75,6 +75,7 @@ def main() -> None:
         flag=args.flag,
         name=args.name,
         svg=args.svg,
+        verbose = args.verbose
     )
     logging.basicConfig(level=args.verbose, format="🏳️‍🌈%(funcName)17s() %(message)s")
 
