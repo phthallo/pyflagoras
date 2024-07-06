@@ -1,5 +1,5 @@
 # pyflagoras
-🏳️‍🌈 A Python command line interface tool for generating pride flags from images. The program accepts image files and outputs the flag as PNG files.
+🏳️‍🌈 A Python command line interface tool for generating pride flags from images. The program accepts any image file and outputs the flag as a `.png` file.
 
 https://github.com/phthallo/pyflagoras/assets/84078890/0d26fe83-374d-45ce-bb8d-ba5be970bd4a
 
