@@ -1,6 +1,6 @@
 # Adding flags
 
-To add a flag, you will need a `.svg` file of the flag's design. You can see some [here](https://commons.wikimedia.org/wiki/Category:SVG_flags_of_LGBT)! Furthermore, you will need the flag's **name**, **alias** and **ID**. For flags which have multiple designs, such as the multiple lesbian flags, please include a descriptor in the alias and ID to distinguish it from the other flags.
+To add a flag, you will need a `.svg` file of the flag's design. You can see some [here](https://commons.wikimedia.org/wiki/Category:SVG_flags_of_LGBT)! Furthermore, you will need to select the flag's **name**, **alias** and **ID**. For flags which have multiple designs, such as the multiple lesbian flags, please include a descriptor and/or year of release in the alias and ID to distinguish it from the other flags.
 
 | Term | Definition | Example |
 | ---- | ---------- | ------- |

@@ -1,5 +1,5 @@
 {
     "name": "Bigender",
     "id": "bigender_2014",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 308\"><path d=\"M0 0h512v44H0z\" fill=\"#c479a2\"></path><path d=\"M0 44h512v44H0z\" fill=\"#eda5cd\"></path><path d=\"M0 88h512v132H0z\" fill=\"#d5c7e8\"></path><path d=\"M0 132h512v44H0z\" fill=\"#fff\"></path><path d=\"M0 220h512v44H0z\" fill=\"#9ac7e8\"></path><path d=\"M0 264h512v44H0z\" fill=\"#6d82d1\"></path></svg>"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 308\"><path d=\"M0 0h512v44H0z\" fill=\"#c479a2\"></path><path d=\"M0 44h512v44H0z\" fill=\"#eda5cd\"></path><path d=\"M0 88h512v132H0z\" fill=\"#d5c7e8\"></path><path d=\"M0 132h512v44H0z\" fill=\"#ffffff\"></path><path d=\"M0 220h512v44H0z\" fill=\"#9ac7e8\"></path><path d=\"M0 264h512v44H0z\" fill=\"#6d82d1\"></path></svg>"
 }

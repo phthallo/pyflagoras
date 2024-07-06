@@ -55,6 +55,10 @@ parser.add_argument('--verbose',
                     help="Enable verbosity (for general info and debugging)",
                     const=logging.INFO)
 
+parser.add_argument('--svg', 
+                    action="store_true",
+                    help="Generate the flag's .svg file in addition to the .png")
+
 parser.add_argument('--version', action='version',
                     version=__version__, help="show the program's version number and exit")
 
@@ -70,6 +74,7 @@ def main() -> None:
         image=args.image,
         flag=args.flag,
         name=args.name,
+        svg=args.svg,
     )
     logging.basicConfig(level=args.verbose, format="🏳️‍🌈%(funcName)17s() %(message)s")
 

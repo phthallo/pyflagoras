@@ -16,10 +16,11 @@ from .similarity_algorithms import _low_cost, _pythagoras
 
 
 class Pyflagoras:
-    def __init__(self, image, flag, name):
+    def __init__(self, image, flag, name, svg):
         self.image = image
         self.flag = flag
         self.name = name
+        self.svg = svg
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
@@ -102,7 +103,8 @@ class Pyflagoras:
         png = (fitz.open(f"{self.name}.pdf")[0]).get_pixmap()
         png.save(f"{self.name}.png")
         os.remove(f"{self.name}.pdf")
-        os.remove(f"{self.name}.svg")
+        if not self.svg:
+            os.remove(f"{self.name}.svg")
 
         print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes['id']}) flag from {Path(self.image).name} as {self.name}.png!")
 

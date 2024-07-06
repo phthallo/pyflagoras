@@ -1,5 +1,5 @@
 {
     "name": "Asexual",
     "id": "asexual_2010",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 480\"><path fill=\"#fff\" d=\"M0 0h800v480H0z\"></path><path d=\"M0 0h800v120H0z\"></path><path fill=\"purple\" d=\"M0 360h800v120H0z\"></path><path fill=\"#a3a3a3\" d=\"M0 120h800v120H0z\"></path></svg>"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 480\"><path fill=\"#ffffff\" d=\"M0 0h800v480H0z\"></path><path fill = \"#000000\" d=\"M0 0h800v120H0z\"></path><path fill=\"#800080\" d=\"M0 360h800v120H0z\"></path><path fill=\"#a3a3a3\" d=\"M0 120h800v120H0z\"></path></svg>"
 }
