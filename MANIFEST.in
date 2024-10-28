@@ -1,2 +1,2 @@
 graft src/pyflagoras/flags
-include src/pyflagoras/flag_aliases.json
+graft src/pyflagoras/data

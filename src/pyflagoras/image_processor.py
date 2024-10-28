@@ -2,6 +2,7 @@ from PIL import Image
 import os
 import numpy as np
 import logging
+
 def extract_colours(img: str, verbose: bool) -> list[tuple]:
     """
     Returns the RGB codes of the colours in the ijmage
