@@ -18,7 +18,7 @@ dependencies = [
 authors = [
   { name="Annabel Quach", email="annabelquach13@gmail.com" },
 ]
-description = "A command line interface tool to generate pride flags from images."
+description = "A Python command line interface tool for theming .svg files using user-provided images."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
