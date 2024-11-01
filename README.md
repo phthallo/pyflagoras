@@ -25,7 +25,9 @@ pip install pyflagoras
 ## Usage
 ```
 $ pyflagoras --help
-usage: pyflagoras [-h] [-f FLAG] [-n NAME] [--verbose] [--svg] [--version] [-l] image       
+usage: pyflagoras [-h] [-f FLAG] [-n NAME] [-a {low_cost,pythagoras,cielab}] [--verbose] [--svg]
+                  [--highlight] [--version] [-l]
+                  image
 
 A command line interface tool for theming .svg files using user-provided images.
 
@@ -37,32 +39,37 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -f FLAG, --flag FLAG  The alias of the flag to generate OR path to a custom .svg file.    
+  -f FLAG, --flag FLAG  The alias of the flag to generate OR path to a custom .svg file.
                         Examples:
                             intersexinclusive
                             /foo/bar/file.svg
                         Default:
                             progresspride
-  -n NAME, --name NAME  Customise the name of the final .png. The following can be used as part of the file name: 
+  -n NAME, --name NAME  Customise the name of the final .png. The following can be used as part of the file name:
                         Format placeholders:
                             {n}: File name (e.g celeste_classic)
                             {N}: File name (full) (e.g celeste_classic.png)
-                            {f}: Flag name (e.g Progress Pride) [N/A for custom .svg]       
-                            {F}: Flag ID (e.g progressPride_2018) [N/A for custom .svg]     
+                            {f}: Flag name (e.g Progress Pride) [N/A for custom .svg]
+                            {F}: Flag ID (e.g progressPride_2018) [N/A for custom .svg]
                         Examples:
                             pyflagoras celeste_classic.png -n "{f}_{n}" [renders Progress Pride_celeste_classic.png]
                         Default:
-                            {n}_{F} [renders celeste_classic_progressPride_2018.png]        
+                            {n}_{F} [renders celeste_classic_progressPride_2018.png]
 
+  -a {low_cost,pythagoras,cielab}, --algorithm {low_cost,pythagoras,cielab}
+                        Change the algorithm used to determine colour similarity.
   --verbose             Enable verbosity (for general info and debugging)
   --svg                 Generate the flag's .svg file in addition to the .png
+  --highlight           Generate an image to highlight where the similar colours were found.
   --version             show the program's version number and exit
   -l, --list            show all flag aliases and exit
 
-Documentation, issues and more: https://github.com/phthallo/pyflagoras
-```
+  ```
 
-Tip: Using `--verbose` will log the coordinates of where the colours were found on your image!
+Tip: 
+> [!TIP]
+> - Using `--verbose` will log the coordinates of where the colours were found on your image!
+> - in terms of colour similarity, `cielab` and `low_cost` produce the best results. 
 
 ## Development
 Substitute `py` for `python3` as necessary.
