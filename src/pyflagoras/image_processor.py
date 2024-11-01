@@ -26,10 +26,10 @@ def highlight_colours(img: Image, draw: ImageDraw, img_name: str, flag_name: str
     Saves an image where the identified 'similar colours' are highlighted with a circle. 
     
     Arguments:
-    draw (str): Converted image to draw on. 
+    img (Image): Copy of the original image.
+    draw (ImageDraw): Converted image to draw on. 
     file_name (str): File name of the original image.
     coords (list[int]): Coordinates of the first detected location of that colour.
-    radius (int): Radius of the circle used to highlight
     """
     radius = 10
     point_list = [(coords[0]-radius, coords[1]-radius), (coords[0]+radius, coords[1]+radius)]

@@ -13,19 +13,20 @@ import fitz
 from .image_processor import extract_colours, highlight_colours
 from .flag_info import flag_attr, format_rgb
 from .utils import rgb_hex, hex_rgb
-from .similarity_algorithms import _low_cost, _pythagoras
+from .similarity_algorithms import _low_cost, _pythagoras, _cielab
 
 
 class Pyflagoras:
-    def __init__(self, image, flag, name, svg, verbose, highlight):
+    def __init__(self, image, flag, name, algorithm, svg, verbose, highlight):
         self.image = image
         self.flag = flag
         self.name = name
+        self.algorithm = algorithm
         self.svg = svg
         self.verbose = verbose
         self.highlight = highlight
 
-    def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
+    def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple], algorithm: str) -> list[tuple]:
         """
         Generates a similarity rank for each of the image's colours compared to the flag's colours.
 
@@ -37,7 +38,7 @@ class Pyflagoras:
         for flag_colour in set(flag_colours):
             flag_colour_pairings = []
             for image_colour in image_colours:
-                pair = _low_cost(flag_colour, image_colour)
+                pair = globals()["_" + algorithm](flag_colour, image_colour)
                 flag_colour_pairings.append(pair)
             logging.info(f"Generated {len(flag_colour_pairings)} pairings for {flag_colour}")
             all_pairings.append(flag_colour_pairings)
@@ -85,9 +86,9 @@ class Pyflagoras:
         logging.info(f"Finding all hex codes in .svg: {len(svg_colours)} found: {svg_colours}")
         format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
         if self.verbose:
-            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours[0])
+            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours[0], self.algorithm)
         else:
-            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
+            generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours, self.algorithm)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
         if self.verbose or self.highlight:
             image_copy = Image.open(self.image).convert("RGB", palette="IMAGE.ADAPTIVE").copy()

@@ -50,6 +50,12 @@ Default:
     '''
 )
 
+parser.add_argument('-a',
+                    '--algorithm',
+                    default="cielab",
+                    choices=["low_cost", "pythagoras", "cielab"],
+                    help="Change the algorithm used to determine colour similarity.")
+
 parser.add_argument('--verbose', 
                     action="store_const",
                     help="Enable verbosity (for general info and debugging)",
@@ -61,7 +67,7 @@ parser.add_argument('--svg',
 
 parser.add_argument('--highlight', 
                     action="store_true",
-                    help="Generate an image highlighting where the similar colours were found in addition to standard output.")
+                    help="Generate an image to highlight where the similar colours were found.")
 
 parser.add_argument('--version', action='version',
                     version=__version__, help="show the program's version number and exit")
@@ -78,6 +84,7 @@ def main() -> None:
         image=args.image, # The image to source the resultant file's colours from.
         flag=args.flag, # .svg to use as a 'template' 
         name=args.name, # The file name of the resultant file.
+        algorithm=args.algorithm, # Algorithm to use when determining similarity.
         svg=args.svg, # Enable saving of the .svg (intemediary step) of the resultant file, or go straight to rendering .png.
         verbose = args.verbose, # Enable logging for debugging.
         highlight = args.highlight # Enable generation of another image showing locations of similar colours
