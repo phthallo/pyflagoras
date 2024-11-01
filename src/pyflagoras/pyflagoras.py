@@ -1,4 +1,5 @@
 import numpy as np
+from PIL import Image, ImageDraw
 import re
 import logging
 import os
@@ -9,19 +10,20 @@ from pathlib import Path
 import fitz
 
 
-from .image_processor import extract_colours
+from .image_processor import extract_colours, highlight_colours
 from .flag_info import flag_attr, format_rgb
 from .utils import rgb_hex, hex_rgb
 from .similarity_algorithms import _low_cost, _pythagoras
 
 
 class Pyflagoras:
-    def __init__(self, image, flag, name, svg, verbose):
+    def __init__(self, image, flag, name, svg, verbose, highlight):
         self.image = image
         self.flag = flag
         self.name = name
         self.svg = svg
         self.verbose = verbose
+        self.highlight = highlight
 
     def parse_similarity(flag_colours: list[tuple], image_colours: list[tuple]) -> list[tuple]:
         """
@@ -87,12 +89,17 @@ class Pyflagoras:
         else:
             generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
-        if self.verbose:
+        if self.verbose or self.highlight:
+            image_copy = Image.open(self.image).convert("RGB", palette="IMAGE.ADAPTIVE").copy()
+            image_draw = ImageDraw.Draw(image_copy, "RGBA")
             for colour in assign_similar_colours:
                 col = (hex_rgb(assign_similar_colours[colour]))
                 colour_coords_y, colour_coords_x = np.where(np.all(image_colours[1]==col,axis=2))
-                logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at ({colour_coords_x[0]}, {colour_coords_y[0]}) on {self.image}. ")
-        
+                if self.highlight:
+                    highlight_colours(image_copy, image_draw, Path(self.image).stem, flag_attributes['name'], [colour_coords_x[0], colour_coords_y[0]])
+                if self.verbose:    
+                    logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at ({colour_coords_x[0]}, {colour_coords_y[0]}) on {self.image}. ")
+                
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
         self.name = ((self.name)
         .replace("{n}", Path(self.image).stem)

@@ -59,6 +59,10 @@ parser.add_argument('--svg',
                     action="store_true",
                     help="Generate the flag's .svg file in addition to the .png")
 
+parser.add_argument('--highlight', 
+                    action="store_true",
+                    help="Generate an image highlighting where the similar colours were found in addition to standard output.")
+
 parser.add_argument('--version', action='version',
                     version=__version__, help="show the program's version number and exit")
 
@@ -72,10 +76,11 @@ def main() -> None:
     args = parser.parse_args()
     pyflag = Pyflagoras(
         image=args.image, # The image to source the resultant file's colours from.
-        flag=args.flag, # SVG to use as a 'template' 
+        flag=args.flag, # .svg to use as a 'template' 
         name=args.name, # The file name of the resultant file.
-        svg=args.svg, # Enable saving of the SVG (intemediary step) of the resultant file, or go straight to PNG.
-        verbose = args.verbose # Enable logging for debugging.
+        svg=args.svg, # Enable saving of the .svg (intemediary step) of the resultant file, or go straight to rendering .png.
+        verbose = args.verbose, # Enable logging for debugging.
+        highlight = args.highlight # Enable generation of another image showing locations of similar colours
     )
     logging.basicConfig(level=args.verbose, format="🏳️‍🌈%(funcName)17s() %(message)s")
 

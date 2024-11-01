@@ -41,7 +41,7 @@ def svg_format(svg: str) -> str:
     
     # Unspecified fills
     new_svg = re.sub(
-        r"<\s*(rect|path|circle|ellipse|line|polyline|polygon|g|defs|svg)(\s+[^>]*?)?\s*\/?>",
+        r"<\s*(rect|path|circle|ellipse|line|polyline|polygon|g|defs)(\s+[^>]*?)?\s*\/?>",
         _specify_fill,
         new_svg)
     
