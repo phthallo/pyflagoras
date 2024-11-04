@@ -62,7 +62,7 @@ class Pyflagoras:
                 if colour_pairing[2] < curr_min:
                     curr_min = colour_pairing[2]
                     curr_pair = colour_pairing[1]
-            logging.info(f"Found pair {rgb_hex(colour_pairing[0]), rgb_hex(curr_pair)} with a low difference of {curr_min}")
+            logging.info(f"Found pair {rgb_hex(colour_pairing[0]), rgb_hex(curr_pair)} with a difference of {curr_min:.2f}")
             optimum_pairs[(rgb_hex(colour_pairing[0]))] = rgb_hex(curr_pair)
         return optimum_pairs
 
@@ -76,14 +76,14 @@ class Pyflagoras:
         """
         for flag_colour in optimum_pairs.keys():
             flag_svg = re.sub(flag_colour, optimum_pairs[flag_colour], flag_svg, flags=re.IGNORECASE) # There's inconsistency in the source json files as to whether the hex codes are in uppercase or lowercase.
-            logging.info(f"Replacing {flag_colour} ({hex_rgb(flag_colour)}) with {optimum_pairs[flag_colour]} ({hex_rgb(optimum_pairs[flag_colour])}) in final .svg file")
+            logging.info(f"{flag_colour} ({hex_rgb(flag_colour)}) replaced with {optimum_pairs[flag_colour]} ({hex_rgb(optimum_pairs[flag_colour])})")
         return flag_svg
     
     def run(self):
         image_colours = extract_colours(self.image, self.verbose)
         flag_attributes = flag_attr(self.flag)
         svg_colours = re.findall(r"#(?:[0-9a-fA-F]{3}){1,2}", flag_attributes["svg"]) # This should return a list of hex codes found in the svg data
-        logging.info(f"Finding all hex codes in .svg: {len(svg_colours)} found: {svg_colours}")
+        logging.info(f"{len(svg_colours)} .svg hex codes found: {svg_colours}")
         format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
         if self.verbose:
             generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours[0], self.algorithm)
@@ -97,9 +97,9 @@ class Pyflagoras:
                 col = (hex_rgb(assign_similar_colours[colour]))
                 colour_coords_y, colour_coords_x = np.where(np.all(image_colours[1]==col,axis=2))
                 if self.highlight:
-                    highlight_colours(image_copy, image_draw, Path(self.image).stem, flag_attributes['name'], [colour_coords_x[0], colour_coords_y[0]])
+                    highlight_colours(image_copy, image_draw, Path(self.image).stem, flag_attributes['id'], [colour_coords_x[0], colour_coords_y[0]])
                 if self.verbose:    
-                    logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at ({colour_coords_x[0]}, {colour_coords_y[0]}) on {self.image}. ")
+                    logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at [{colour_coords_x[0]}, {colour_coords_y[0]}] on input image. ")
                 
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
         self.name = ((self.name)

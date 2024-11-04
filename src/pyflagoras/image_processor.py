@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw
 import os
+import math
 import numpy as np
 import logging
 
@@ -31,10 +32,11 @@ def highlight_colours(img: Image, draw: ImageDraw, img_name: str, flag_name: str
     file_name (str): File name of the original image.
     coords (list[int]): Coordinates of the first detected location of that colour.
     """
-    radius = 10
+    radius = int(math.sqrt(img.size[0]/30) + (img.size[1]/30))/2
+    c_width = int(radius/4)
     point_list = [(coords[0]-radius, coords[1]-radius), (coords[0]+radius, coords[1]+radius)]
-    draw.ellipse(point_list, outline=(235, 64, 52), width=2)
-    logging.info(f"Highlighting coordinates {[int(i) for i in coords]} on {img_name}_{flag_name}_highlight_colour.png")
+    draw.ellipse(point_list, outline=(235, 64, 52), width=c_width)
+    logging.info(f"Highlighting coordinates {[int(i) for i in coords]} on output image")
     img.save(f"{img_name}_{flag_name}_highlight_colour.png", "PNG")
     return True
             

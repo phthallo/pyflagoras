@@ -89,7 +89,7 @@ def main() -> None:
         verbose = args.verbose, # Enable logging for debugging.
         highlight = args.highlight # Enable generation of another image showing locations of similar colours
     )
-    logging.basicConfig(level=args.verbose, format="🏳️‍🌈%(funcName)17s() %(message)s")
+    logging.basicConfig(level=args.verbose, format="🏳️‍🌈\033[38;5;173m%(funcName)17s()\033[0m %(message)s")
 
     pyflag.run()
 
