@@ -4,7 +4,7 @@ import math
 import numpy as np
 import logging
 
-def extract_colours(img: str, verbose: bool) -> list[tuple]:
+def extract_colours(img: str, status: list[bool]) -> list[tuple]:
     """
     Returns the RGB codes of the colours in the image
     
@@ -17,7 +17,7 @@ def extract_colours(img: str, verbose: bool) -> list[tuple]:
     palette = Image.open(img).convert("RGB", palette="IMAGE.ADAPTIVE")
     max_colours = palette.size[0]*palette.size[1]
     colours = palette.getcolors(maxcolors=max_colours) 
-    if verbose:
+    if any(status):
         image = np.array(Image.open(img).convert("RGB", palette="IMAGE.ADAPTIVE"))
         return ([i[1] for i in colours], image)
     return ([i[1] for i in colours])

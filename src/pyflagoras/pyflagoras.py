@@ -80,17 +80,17 @@ class Pyflagoras:
         return flag_svg
     
     def run(self):
-        image_colours = extract_colours(self.image, self.verbose)
+        image_colours = extract_colours(self.image, [self.verbose, self.highlight])
         flag_attributes = flag_attr(self.flag)
         svg_colours = re.findall(r"#(?:[0-9a-fA-F]{3}){1,2}", flag_attributes["svg"]) # This should return a list of hex codes found in the svg data
         logging.info(f"{len(svg_colours)} .svg hex codes found: {svg_colours}")
         format_r = [hex_rgb(i) for i in svg_colours] # convert each colour into its RGB tuple so similarity can be compared.
-        if self.verbose:
+        if any([self.verbose, self.highlight]):
             generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours[0], self.algorithm)
         else:
             generate_similarity = Pyflagoras.parse_similarity(format_r, image_colours, self.algorithm)
         assign_similar_colours = Pyflagoras.assign_rgb(generate_similarity)
-        if self.verbose or self.highlight:
+        if any([self.verbose, self.highlight]):
             image_copy = Image.open(self.image).convert("RGB", palette="IMAGE.ADAPTIVE").copy()
             image_draw = ImageDraw.Draw(image_copy, "RGBA")
             for colour in assign_similar_colours:
@@ -99,7 +99,7 @@ class Pyflagoras:
                 if self.highlight:
                     highlight_colours(image_copy, image_draw, Path(self.image).stem, flag_attributes['id'], [colour_coords_x[0], colour_coords_y[0]])
                 if self.verbose:    
-                    logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at [{colour_coords_x[0]}, {colour_coords_y[0]}] on input image. ")
+                    logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at [{colour_coords_x[0]}, {colour_coords_y[0]}] on input image.")
                 
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
         self.name = ((self.name)
