@@ -45,7 +45,8 @@ options:
                             /foo/bar/file.svg
                         Default:
                             progresspride
-  -n NAME, --name NAME  Customise the name of the final .png. The following can be used as part of the file name:
+  -o OUTPUT, --output OUTPUT  
+                        Customise the name of the final .png. The following can be used as part of the file name:
                         Format placeholders:
                             {n}: File name (e.g celeste_classic)
                             {N}: File name (full) (e.g celeste_classic.png)
@@ -63,8 +64,7 @@ options:
   --highlight           Generate an image to highlight where the similar colours were found.
   --version             show the program's version number and exit
   -l, --list            show all flag aliases and exit
-
-  ```
+```
 
 Tip: 
 > [!TIP]

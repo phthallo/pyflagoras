@@ -33,8 +33,8 @@ Default:
 ) 
 
 parser.add_argument(
-    '-n',
-    '--name',
+    '-o',
+    '--output',
     default="{n}_{F}",
     help=
     '''Customise the name of the final .png. The following can be used as part of the file name: 
@@ -83,7 +83,7 @@ def main() -> None:
     pyflag = Pyflagoras(
         image=args.image, # The image to source the resultant file's colours from.
         flag=args.flag, # .svg to use as a 'template' 
-        name=args.name, # The file name of the resultant file.
+        output=args.output, # The file name of the resultant file.
         algorithm=args.algorithm, # Algorithm to use when determining similarity.
         svg=args.svg, # Enable saving of the .svg (intemediary step) of the resultant file, or go straight to rendering .png.
         verbose = args.verbose, # Enable logging for debugging.

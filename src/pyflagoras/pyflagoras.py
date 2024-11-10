@@ -17,10 +17,10 @@ from .similarity_algorithms import _low_cost, _pythagoras, _cielab
 
 
 class Pyflagoras:
-    def __init__(self, image, flag, name, algorithm, svg, verbose, highlight):
+    def __init__(self, image, flag, output, algorithm, svg, verbose, highlight):
         self.image = image
         self.flag = flag
-        self.name = name
+        self.output = output
         self.algorithm = algorithm
         self.svg = svg
         self.verbose = verbose
@@ -102,24 +102,24 @@ class Pyflagoras:
                     logging.info(f"Similar colour {rgb_hex(col)} ({col}) can be found at [{colour_coords_x[0]}, {colour_coords_y[0]}] on input image.")
                 
         substituted = Pyflagoras.replace_colours(flag_attributes["svg"], assign_similar_colours)
-        self.name = ((self.name)
+        self.output = ((self.output)
         .replace("{n}", Path(self.image).stem)
         .replace("{N}", Path(self.image).name)
         .replace("{f}", flag_attributes['name'])
         .replace("{F}", flag_attributes['id'])
         .replace('"', "")
         )
-        with open(f"{self.name}.svg", "w", encoding="utf-8") as file:
+        with open(f"{self.output}.svg", "w", encoding="utf-8") as file:
             file.write(substituted)
 
-        drawing = svg2rlg(f"{self.name}.svg")
-        renderPDF.drawToFile(drawing, f"{self.name}.pdf")
-        png = (fitz.open(f"{self.name}.pdf")[0]).get_pixmap()
-        png.save(f"{self.name}.png")
-        os.remove(f"{self.name}.pdf")
+        drawing = svg2rlg(f"{self.output}.svg")
+        renderPDF.drawToFile(drawing, f"{self.output}.pdf")
+        png = (fitz.open(f"{self.output}.pdf")[0]).get_pixmap()
+        png.save(f"{self.output}.png")
+        os.remove(f"{self.output}.pdf")
         if not self.svg:
-            os.remove(f"{self.name}.svg")
+            os.remove(f"{self.output}.svg")
 
-        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes['id']}) flag from {Path(self.image).name} as {self.name}.png!")
+        print(f"🏳️‍🌈  Generated {flag_attributes['name']} ({flag_attributes['id']}) flag from {Path(self.image).name} as {self.output}.png!")
 
 
