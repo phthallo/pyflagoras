@@ -15,7 +15,6 @@ def flag_attr(flag_alias: str) -> str:
     Returns:
     str: flag data in json
     """
-    flag_alias = flag_alias.lower()
     all_flags = json.loads(files("pyflagoras.data").joinpath("flag_aliases.json").read_text(encoding="utf-8"))
     if os.path.exists(flag_alias): # Check if custom .svg is being loaded.
         flag_name = Path(flag_alias).stem # Use .svg file name as final name.
@@ -26,8 +25,8 @@ def flag_attr(flag_alias: str) -> str:
             "id": flag_name, # "
             "svg": data
         })
-    elif flag_alias in all_flags: # Check if existing .svg is being loaded. 
-        flag_name = all_flags[flag_alias]
+    elif (flag_alias).lower() in all_flags: # Check if existing .svg is being loaded 
+        flag_name = all_flags[flag_alias.lower()]
         location = files("pyflagoras.flags").joinpath(flag_name+".json").read_text(encoding="utf-8")
     else:
         raise Exception(f"The alias '{flag_alias}' is not associated with a flag.")
