@@ -5,6 +5,9 @@ https://github.com/phthallo/pyflagoras/assets/84078890/8927779e-5e1c-411e-9d14-6
 
 (To see more examples of flags generated using this program, visit [examples.md](/examples.md)!)
 
+> [!NOTE]
+> I spoke about Pyflagoras at PyCon AU 2024! Watch my talk [here](https://youtu.be/xVjlVYFrJj4?t=2607) :)
+
 ## How does it work?
 Pyflagoras, at a minimum, needs the name of a pride flag, or a path to an `.svg`, and a path to an image to work.
 
